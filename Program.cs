@@ -6,8 +6,9 @@ namespace plan_your_heist
     {
         static void Main(string[] args)
         {
+            var rnd = new Random();
             Crew crew = new Crew();
-            int bankDifficulty = 100;
+            int bankDifficulty = 100 + rnd.Next(-10, 11);
             {
                 
             }
@@ -36,13 +37,15 @@ namespace plan_your_heist
                 //     Console.WriteLine(goon);
                 // }
             }
-
+            Console.WriteLine();
+            Console.WriteLine($"Alright, the gang's all here. With a combined skill level of {crew.CrewSkill()}, this job should be a breeze. Probably.");
+            Console.WriteLine($"Bank Level: {bankDifficulty}");
             if (crew.CrewSkill() > bankDifficulty)
             {
                 Console.WriteLine("Success! The money's good, but for me, the action is the juice.");
             }
             else{
-                Console.WriteLine("Should've asked Deniro for some pointers. Oh well, too late now.");
+                Console.WriteLine("Well, shit. Should've asked Deniro for some pointers. Oh well, too late now.");
             }
 
 
