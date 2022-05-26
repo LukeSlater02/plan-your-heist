@@ -13,6 +13,8 @@ namespace plan_your_heist
 
             }
             Console.WriteLine("Planning Scene..");
+            Console.WriteLine("Enter the difficulty level of the bank:");
+            bankDifficulty = int.Parse(Console.ReadLine());
 
             while (true)
             {
