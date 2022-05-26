@@ -8,9 +8,9 @@ namespace plan_your_heist
         {
             var rnd = new Random();
             Crew crew = new Crew();
-            int bankDifficulty = 100 + rnd.Next(-10, 11);
+            int bankDifficulty = 100;
             {
-                
+
             }
             Console.WriteLine("Planning Scene..");
 
@@ -38,15 +38,27 @@ namespace plan_your_heist
                 // }
             }
             Console.WriteLine();
-            Console.WriteLine($"Alright, the gang's all here. With a combined skill level of {crew.CrewSkill()}, this job should be a breeze. Probably.");
-            Console.WriteLine($"Bank Level: {bankDifficulty}");
-            if (crew.CrewSkill() > bankDifficulty)
+            Console.WriteLine("Alright, now that we've got the crew assembled, we need to do some practice runs. Question is, how many?");
+            int trialRuns = int.Parse(Console.ReadLine());
+            for (int i = 0; i < trialRuns; i++)
             {
-                Console.WriteLine("Success! The money's good, but for me, the action is the juice.");
+                Console.WriteLine($"Alright, the gang's all here. With a combined skill level of {crew.CrewSkill()}, this job should be a breeze. Probably.");
+                bankDifficulty +=  rnd.Next(-10, 11);
+                Console.WriteLine($"Bank Level: {bankDifficulty}");
+                if (crew.CrewSkill() > bankDifficulty)
+                {
+                    Console.WriteLine("Success! The money's good, but for me, the action is the juice.");
+                    crew.Successes++;
+                }
+                else
+                {
+                    Console.WriteLine("Well, shit. Should've asked Deniro for some pointers. Oh well, too late now.");
+                    crew.Failures++;
+                }
             }
-            else{
-                Console.WriteLine("Well, shit. Should've asked Deniro for some pointers. Oh well, too late now.");
-            }
+            Console.WriteLine();
+            Console.WriteLine($"Alright, the boys are back. They're reporting {crew.Successes} successful runs and {crew.Failures} failed runs.");
+
 
 
 
@@ -81,10 +93,14 @@ Courage Factor: {CourageFactor}
 
             public int CrewCount { get; set; }
 
+            public int Successes {get;set;}
+
+            public int Failures {get;set;}
+
             public int CrewSkill()
             {
                 int total = 0;
-                foreach(Goon member in CrewList)
+                foreach (Goon member in CrewList)
                 {
                     total += member.SkillLevel;
                 }
