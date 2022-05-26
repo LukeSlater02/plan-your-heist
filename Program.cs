@@ -17,7 +17,7 @@ namespace plan_your_heist
             while (true)
             {
                 Console.WriteLine();
-                Console.WriteLine("Assemble your crew, a name is a good place to start:");
+                Console.WriteLine("We got a new guy to add to the roster, a name is a good place to start (or press enter to move on):");
                 string name = Console.ReadLine();
                 if (name.ToLower() == "")
                 {
@@ -29,6 +29,7 @@ namespace plan_your_heist
                 Console.WriteLine("What's their Courage Factor? Be specific, from 0.0 - 2.0.");
                 member.CourageFactor = Double.Parse(Console.ReadLine());
                 crew.CrewList.Add(member);
+                Console.WriteLine();
                 Console.WriteLine($"Alright, {member.Name} is in. With a {member.SkillLevel} skill level and a {member.CourageFactor} courage factor, he should be an asset to the team. That brings our goon count up to {crew.CrewList.Count}.");
                 // Console.WriteLine();
                 // Console.WriteLine("Here's who we've got so far:");
@@ -43,8 +44,10 @@ namespace plan_your_heist
             for (int i = 0; i < trialRuns; i++)
             {
                 Console.WriteLine($"Alright, the gang's all here. With a combined skill level of {crew.CrewSkill()}, this job should be a breeze. Probably.");
+                Console.WriteLine();
                 bankDifficulty +=  rnd.Next(-10, 11);
                 Console.WriteLine($"Bank Level: {bankDifficulty}");
+                Console.WriteLine();
                 if (crew.CrewSkill() > bankDifficulty)
                 {
                     Console.WriteLine("Success! The money's good, but for me, the action is the juice.");
