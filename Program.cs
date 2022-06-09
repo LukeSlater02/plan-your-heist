@@ -152,13 +152,16 @@ namespace plan_your_heist
                 System.Console.WriteLine("Most Secure: Guards");
             }
 
+            System.Console.WriteLine("Assemble your crew!");
             foreach(var goon in rolodex)
             {
                 var specialty = goon.GetType().ToString().Split(".")[1];
                 specialty = Regex.Replace(specialty, "([a-z])([A-Z])", "$1 $2");
                 System.Console.WriteLine();
-                System.Console.WriteLine($"{goon.Name} - {goon.SkillLevel} {specialty} - Cut {goon.PercentageCut}");
+                System.Console.WriteLine($"{rolodex.IndexOf(goon)+1}. {goon.Name} - {goon.SkillLevel} {specialty} - Cut {goon.PercentageCut}");
             }
+            System.Console.Write("> ");
+            int selectedGoon = int.Parse(Console.ReadLine());
         }
     }
 }
